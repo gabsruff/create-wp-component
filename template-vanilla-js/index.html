@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordpress Component</title>
+  </head>
+  <body>
+    <script type="module">
+      const root = document.createElement("div");
+      root.id = __COMPONENT_CONFIG__.rootID;
+      document.body.appendChild(root);
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
