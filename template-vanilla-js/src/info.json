@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Vite WP Component",
+    "text": "A Vite plugin and CLI tool for building WordPress components.",
+    "image": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/wordpress.png",
+    "alt": "wordpress-logo"
+  },
+  {
+    "title": "Bundling with Vite",
+    "text": "It bundles your project with Vite, ensuring modern and efficient JavaScript packaging.",
+    "image": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/vite.png",
+    "alt": "vite-logo"
+  },
+  {
+    "title": "PHP Bridge Generation",
+    "text": "Generates the necessary PHP bridge file so your component can be used seamlessly in WordPress.",
+    "image": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/php.png",
+    "alt": "php-logo"
+  },
+  {
+    "title": "Shortcode Exposure",
+    "text": "Leverages the WordPress Plugin API to expose your component as a shortcode for easy embedding.",
+    "image": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/wordpress.png",
+    "alt": "php-logo"
+  },
+  {
+    "title": "FTP Deployment",
+    "text": "Provides FTP deployment utilities for pushing updates directly to your WordPress site.",
+    "image": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/filebrowser-quantum.png",
+    "alt": "folder-icon"
+  }
+]

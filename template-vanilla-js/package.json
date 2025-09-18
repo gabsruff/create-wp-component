@@ -19,6 +19,6 @@
     "dotenv": "^17.2.2",
     "inquirer": "^12.9.3",
     "vite": "^7.1.3",
-    "vite-plugin-wp-component": "^1.0.1"
+    "vite-plugin-wp-component": "latest"
   }
 }

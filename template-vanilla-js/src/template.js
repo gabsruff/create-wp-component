@@ -1,8 +1,9 @@
 import styles from "./styles.module.css";
+import img from "./assets/javascript.webp";
 
-export const template = `
-  <section>
-    <h2 class="${styles.section}">Nuestros Planes</h2>
-    <div id="price-table" class="${styles.container}"></div>
-  </section>
+export const templateHTML = `
+  <div class=${styles.templateHeader}>
+  <img src=${img} alt="javascript-logo" />
+  <h2>Vite WP Component Slides</h2>
+  </div>
 `;
