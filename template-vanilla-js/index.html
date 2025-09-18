@@ -6,11 +6,14 @@
     <title>Wordpress Component</title>
   </head>
   <body>
+    <!-- The script below creates the root element for the dev environment. -->
     <script type="module">
       const root = document.createElement("div");
+      //This matches the ID of the element that will be created via Wordpress Shortcode in production.
       root.id = __COMPONENT_CONFIG__.rootID;
       document.body.appendChild(root);
     </script>
+    <!-- The script below is our javascript entrypoint -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

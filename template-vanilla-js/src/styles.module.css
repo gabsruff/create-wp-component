@@ -1,3 +1,8 @@
+/* modules.css enables us to use PostCSS for css parsing an processing */
+/* PostCSS in this project is used to scope and encapsulate our CSS classnames
+ and avoid unwanted interactions in production */
+/* PostCSS is also used to improve compatibility, via the plugin Autoprefix */
+
 .template-header {
   display: flex;
   flex-direction: row;

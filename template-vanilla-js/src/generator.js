@@ -1,3 +1,5 @@
+//Logic example. Code could be broken up in multiple files if needed.
+
 import styles from "./styles.module.css";
 
 export function generateSlides(data) {
