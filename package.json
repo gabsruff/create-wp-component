@@ -27,7 +27,6 @@
   ],
   "dependencies": {
     "@inquirer/prompts": "^7.8.4",
-    "commander": "^14.0.0",
     "yoctocolors": "^2.1.2"
   }
 }
