@@ -6,7 +6,7 @@ import { readConfig } from "vite-plugin-wp-component/utils/readConfig.js";
 const config = await readConfig();
 
 export default defineConfig({
-  //Sets relative routes. Used to import internal media in production.
+  //Sets relative routes. Used to import component media in production.
   base: "./",
   //Build values below should not be changed.
   //The generated PHP expects them as defined here.

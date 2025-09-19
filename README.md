@@ -1,114 +1,97 @@
-# 🛠️ WordPress Component Dev Template
+# create-wp-component
 
-Este template demuestra cómo desarrollar **componentes modernos para WordPress** usando **Vite + Vanilla JS + CSS Modules**, con un flujo pensado para **desarrollo rápido, bundle optimizado y deploy automático**.
+A **CLI scaffolding tool** for quickly setting up a WordPress component project powered by [vite-plugin-wp-component](https://www.npmjs.com/package/vite-plugin-wp-component).  
+This tool generates the project boilerplate with: - Pre-configured **Vite** and **PostCSS** settings.
 
-Incluye un ejemplo de **Price Table** dinámico que se convierte en un **shortcode de WordPress**:  
-`[price_table]`
+- A ready-to-use **index.html** with the correct `rootID` injected.
+- An empty `.env` for FTP credentials.
+- Built-in npm scripts that map to `vite-plugin-wp-component` commands.
 
----
+## Installation
 
-## 🚀 Features
+You can create a new project using `npm` or `npx`:
 
-- ⚡ **Vite Dev Server** con Hot Module Replacement (HMR).
-- 🎨 **CSS Modules** para encapsulamiento de estilos (sin colisiones con el theme).
-- 📦 **Build automático** → genera un plugin listo para activar en WordPress.
-- 🔌 **Shortcode demo** (`[price_table]`) que muestra la Price Table en cualquier página.
-- 📤 **Deploy vía FTP** con un solo comando.
-
----
-
-## 📂 Estructura
-
-```
-template/
-├─ src/ # Código fuente
-│ ├─ main.js # entrypoint → monta en #app
-│ ├─ template.js # estructura base del componente
-│ ├─ generator.js # genera contenido dinámico desde JSON
-│ ├─ prices.json # datos de ejemplo (planes)
-│ └─ styles.module.css
-│
-├─ wp-plugin/ # salida del build
-│ ├─ index.php # plugin WP con shortcode [price_table]
-│ └─ assets/ # bundle (JS/CSS) generado por Vite
-│
-├─ scripts/ # utilidades
-│ ├─ setup-ftp.js # configurar credenciales
-│ └─ deploy.js # subir vía FTP
-│
-├─ index.html # página demo para dev (fuera de WP)
-├─ package.json
-├─ vite.config.js
-
+```bash
+npx create-wp-component
+cd my-component
+npm install
 ```
 
----
+## Available Scripts
 
-## 📜 Scripts disponibles
+The CLI automatically registers the following scripts in `package.json`:
 
-### `npm run dev`
+- `npm run config` → Runs `wp-component config` (edit `.env` or `component.config.json`).
+- `npm run build` → Runs `vite build` **and** `wp-component build` (bundles your project and generates the plugin PHP file in one step).
+- `npm run deploy` → Runs `wp-component deploy` (deploys via FTP to your WordPress site).
 
-Levanta el servidor de desarrollo de Vite.
+## Project Structure
 
-- Podés probar el componente en `http://localhost:5173/` usando `index.html`.
-- Ideal para ver cambios en tiempo real con HMR.
+A newly scaffolded project has the following structure:
 
----
+```cpp
+Project/
+├──index.html				// Preconfigured with __COMPONENT_CONFIG__.rootID
+└── src/
+	├── assets/				// Directory for external/static files
+	│   └── javascript.webp
+	├── generator.js		// Core component logic
+	├── info.json			// Data consumed by generator (can be local or fetched remotely)
+	├── main.js				// Entry point, mounts the component into the rootID
+	├── styles.module.css	// CSS Modules stylesheet
+	└── template.js			// Example of importing assets & styles
+```
 
-### `npm run build`
+## Key Files
 
-Genera un bundle optimizado en `wp-plugin/assets/` y copia lo necesario para WordPress.
+- **`main.js`**  
+  Accesses `__COMPONENT_CONFIG__.rootID` and renders your component inside the root element.
+- **`styles.module.css`**  
+  Uses **CSS Modules** to ensure class encapsulation and isolation.  
+  Class names follow this structure:
 
-- Al terminar, podés ir a tu instalación de WP → **Activar plugin “Price Table Demo”**.
-- Insertá `[price_table]` en cualquier post/página.
+  ```
+  [componentName]__[local]___[hash:base64:5]
+  ```
 
----
+  They are automatically transformed from `class-css` to `classCss`, so you can import them in JavaScript as:
 
-### `npm run config`
+  ```js
+  import styles from "./styles.module.css";
+  element.className = styles.classCss;
+  ```
 
-Configura las credenciales FTP para subir el plugin al servidor.  
-Guarda los datos en `scripts/ftp-config.json`.
-
----
-
-### `npm run deploy`
-
-Sube automáticamente la carpeta `wp-plugin/` a tu servidor remoto vía FTP.
-
-- Perfecto para testear cambios sin abrir FileZilla.
-
----
-
-## 🎨 Ejemplo incluido: Price Table
-
-- Los planes se definen en **`src/prices.json`**.
-- El HTML se genera dinámicamente desde esos datos en **`generator.js`**.
-- Los estilos se encapsulan con **CSS Modules** (`styles.module.css`).
-- El resultado se renderiza en el shortcode `[price_table]`.
-
----
-
-## 🔧 Flujo de trabajo recomendado
-
-1. `npm run dev` → desarrollá y probá el componente en local.
-2. Ajustá el diseño/JS/JSON según lo que necesites.
-3. `npm run build` → genera el plugin.
-4. Activá el plugin en WordPress → usá `[price_table]`.
-5. (Opcional) `npm run deploy` → subí al servidor vía FTP.
+- **`generator.js`**  
+  Contains the core logic of the component, which is invoked from `main.js`.
+- **`info.json`**  
+  Provides configuration or data for `generator.js`.  
+  This can be a static file or dynamically fetched from an external server.
+- **`template.js`**  
+  Demonstrates how to import assets from `/assets` and styles from `styles.module.css`.
 
 ---
 
-## 📌 Nota
+## Typical Workflow
 
-Este template está pensado como **ejemplo educativo** de cómo estructurar un flujo moderno para desarrollar componentes aislados en WordPress.  
-Podés adaptarlo fácilmente para:
+1.  Configure FTP credentials and metadata:
 
-- Shortcodes adicionales
-- Bloques de Gutenberg
-- Widgets personalizados
+    ```bash
+    npm run config
+    ```
 
----
+2.  Build the bundle **and** generate the WordPress plugin PHP:
 
-## 🧑‍💻 Autor
+    ```bash
+    npm run build
+    ```
 
-Creado como demo para un flujo moderno de desarrollo WP con Vite + Vanilla JS.
+3.  Deploy the plugin directly to WordPress:
+
+    ```bash copy
+    npm run deploy
+    ```
+
+## Notes
+
+- The scaffold ensures that the **same rootID** is used across development and production (in sync with `vite-plugin-wp-component`).
+- CSS Modules are essential for encapsulation — no class name collisions with WordPress themes or other plugins.

@@ -1,14 +1,33 @@
 {
   "name": "create-wp-component",
   "version": "1.0.0",
+  "description": "CLI tool to scaffold WordPress components compatible with vite-plugin-wp-component",
+  "author": "Gabriel Ruffinelli <gabsruff@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabsruff/vite-plugin-wp-component.git"
+  },
+  "homepage": "https://github.com/gabsruff/vite-plugin-wp-component#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
   "main": "index.js",
   "bin": {
     "create-wp-component": "./index.js"
   },
+  "keywords": [
+    "wordpress",
+    "vite",
+    "cli",
+    "plugin",
+    "scaffold",
+    "component"
+  ],
   "dependencies": {
     "@inquirer/prompts": "^7.8.4",
     "commander": "^14.0.0",
     "yoctocolors": "^2.1.2"
-  },
-  "type": "module"
+  }
 }
